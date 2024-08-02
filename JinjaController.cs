@@ -1,6 +1,16 @@
 using UnityEngine;
 
 public class JinjaController : MonoBehaviour {
+
+	[SerializeField]
+	float acceleration = 0.1f;
+
+	[SerializeField]
+	float friction = 0.9f;
+
+	// a field to store how fast Jinja is moving
+	Vector3 velocity = Vector3.zero;
+
 	// Start is called before the first frame update
 	void Start() {
 
@@ -9,15 +19,26 @@ public class JinjaController : MonoBehaviour {
 	// Update is called once per frame
 	void Update() {
 
-		//check if the right arrow key is down, move jinja
+		//shortcut for Jinja's transform component
+		Transform tf = GetComponent<Transform>();
+
+		// apply friction
+		velocity.x *= friction;
+
+		//if the right arrow key is pressed
 		if (Input.GetKey(KeyCode.RightArrow)) {
-			GetComponent<Transform>().position += Vector3.right * 0.1f;
+			// increase Jinja's velocity
+			velocity += Vector3.right * acceleration;
 		}
 
-		//check if the left arrow key is down, move jinja
+		//if the left arrow key is pressed
 		if (Input.GetKey(KeyCode.LeftArrow)) {
-			GetComponent<Transform>().position += Vector3.left * 0.1f;
+			// decrease Jinja's velocity
+			velocity += Vector3.left * acceleration;
 		}
+
+		//move jinja by her current velocity
+		tf.position += velocity;
 
 	}
 }
