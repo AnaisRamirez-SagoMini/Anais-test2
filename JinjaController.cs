@@ -13,6 +13,10 @@ public class JinjaController : MonoBehaviour {
 	[SerializeField]
 	float friction = 0.9f;
 
+	// a field to store jinja's gravity setting
+	[SerializeField]
+	float gravity = 0.02f;
+
 	// Start is called before the first frame update
 	void Start() {
 
@@ -26,6 +30,9 @@ public class JinjaController : MonoBehaviour {
 
 		//add friction
 		velocity.x *= friction;
+
+		//apply gravity
+		velocity += Vector3.down * gravity;
 
 		// check if the right arrow key is pressed
 		if (Input.GetKey(KeyCode.RightArrow)) {
