@@ -5,6 +5,14 @@ public class JinjaController : MonoBehaviour {
 	// a field to store jinja's velocity
 	Vector3 velocity = Vector3.zero;
 
+	// a field to store jinja's acceleration setting
+	[SerializeField]
+	float acceleration = 0.1f;
+
+	//a field to store jinja's friction setting
+	[SerializeField]
+	float friction = 0.9f;
+
 	// Start is called before the first frame update
 	void Start() {
 
@@ -16,15 +24,18 @@ public class JinjaController : MonoBehaviour {
 		//shortcut for jinja's transform component
 		Transform tf = GetComponent<Transform>();
 
+		//add friction
+		velocity.x *= friction;
+
 		// check if the right arrow key is pressed
 		if (Input.GetKey(KeyCode.RightArrow)) {
-			velocity += Vector3.right * 0.1f;
+			velocity += Vector3.right * acceleration;
 
 		}
 
 		// check if the left arrow key is pressed
 		if (Input.GetKey(KeyCode.LeftArrow)) {
-			velocity += Vector3.left * 0.1f;
+			velocity += Vector3.left * acceleration;
 
 		}
 
