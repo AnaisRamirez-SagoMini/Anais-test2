@@ -8,11 +8,11 @@ public class JinjaController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
-
-		// check if the arrow key is dowm
+		// check if the right arrow key is pressed
 		if (Input.GetKey(KeyCode.RightArrow)) {
-			// move jinja to the right
+			// make jinja move
 			GetComponent<Transform>().position += Vector3.right;
+
 		}
 	}
 }
