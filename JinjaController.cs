@@ -11,16 +11,18 @@ public class JinjaController : MonoBehaviour {
 	// Update is called once per frame
 	void Update() {
 
+		Transform tf = GetComponent<Transform>();
+
 		//check if the arrow key is down
 		if (Input.GetKey(KeyCode.RightArrow)) {
 			// move jinja
-			GetComponent<Transform>().position += Vector3.right * 0.1f;
+			tf.position += Vector3.right * 0.1f;
 		}
 
 		//check if the arrow key is down
 		if (Input.GetKey(KeyCode.LeftArrow)) {
 			// move jinja
-			GetComponent<Transform>().position += Vector3.left * 0.1f;
+			tf.position += Vector3.left * 0.1f;
 		}
 
 	}
