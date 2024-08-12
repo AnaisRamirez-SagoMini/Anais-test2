@@ -14,9 +14,14 @@ public class JinjaController : MonoBehaviour {
 		//check if the arrow key is down
 		if (Input.GetKey(KeyCode.RightArrow)) {
 			// move jinja
-			GetComponent<Transform>().position += Vector3.right;
+			GetComponent<Transform>().position += Vector3.right * 0.1f;
 		}
 
+		//check if the arrow key is down
+		if (Input.GetKey(KeyCode.LeftArrow)) {
+			// move jinja
+			GetComponent<Transform>().position += Vector3.left * 0.1f;
+		}
 
 	}
 }
