@@ -85,5 +85,34 @@ public class JinjaController : MonoBehaviour {
 			velocity.y = 0;
 		}
 
+
+		//ANIMATION
+
+		// get a reference to the Animator component
+		Animator animator = GetComponentInChildren<Animator>();
+		animator.ResetTrigger("Idle");
+		animator.ResetTrigger("Run");
+		animator.ResetTrigger("Jump");
+
+		//check if jinja is in the air
+		RaycastHit2D hitGround = Physics2D.Raycast(tf.position, Vector3.down, 0.1f);
+		if (hitGround.collider == null) {
+			// tell the animator to play the jump animation
+			animator.SetTrigger("Jump");
+		}// check if the left or right arrow key is pressed
+		else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Mathf.Abs(velocity.x) >= 0.02f) {
+			//tell the animator to play the run animation
+			animator.SetTrigger("Run");
+		} else {
+			// tell the animator to play the idle animation
+			animator.SetTrigger("Idle");
+
+			//make jinja stop moving
+			velocity.x = 0;
+		}
+
+
+
+
 	}
 }
