@@ -48,5 +48,26 @@ public class JinjaController : MonoBehaviour {
 		//move jinja
 		tf.position += velocity;
 
+
+		// the start of the ray
+		Vector3 origin = tf.position - velocity;
+
+		//the direction of the ray
+		Vector3 direction = velocity;
+
+		// the length of the ray
+		float length = velocity.magnitude;
+
+		RaycastHit2D hit = Physics2D.Raycast(origin, direction, length);
+
+		// did jinja go down through a platform when she moved?
+		if (velocity.y < 0 && hit.collider != null) {
+			// put her exactly on the platform
+			tf.position = new Vector3(tf.position.x, hit.point.y, tf.position.z);
+
+			//reset her y velocity
+			velocity.y = 0;
+		}
+
 	}
 }
