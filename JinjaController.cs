@@ -111,7 +111,14 @@ public class JinjaController : MonoBehaviour {
 			velocity.x = 0;
 		}
 
+		//if jinja is moving
+		if (Mathf.Abs(velocity.x) >= 0.02f) {
+			//get the direction from jinja's velocity, 1 or -1
+			float movementDirection = Mathf.Sign(velocity.x);
 
+			//make her face the right way
+			tf.localScale = new Vector3(movementDirection, 1, 1);
+		}
 
 
 	}
