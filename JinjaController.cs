@@ -95,8 +95,9 @@ public class JinjaController : MonoBehaviour {
 		animator.ResetTrigger("Jump");
 
 		//check if jinja is in the air
-		RaycastHit2D hitGround = Physics2D.Raycast(tf.position, Vector3.down, 0.1f);
-		if (hitGround.collider == null) {
+		RaycastHit2D airHit = Physics2D.Raycast(tf.position, Vector3.down, 0.1f);
+
+		if (airHit.collider == null) {
 			// tell the animator to play the jump animation
 			animator.SetTrigger("Jump");
 		}// check if the left or right arrow key is pressed
@@ -120,6 +121,22 @@ public class JinjaController : MonoBehaviour {
 			tf.localScale = new Vector3(movementDirection, 1, 1);
 		}
 
+		//has jinja fallen below the lowest platform?
+		if (tf.position.y < -10) {
 
+			// reset position and velocity
+			tf.position = Vector3.zero;
+			velocity = Vector3.zero;
+		}
+
+	}
+
+	void OnTriggerEnter2D(Collider2D other) {
+
+		//check if jinja hit the sun
+		if (other.tag == "Finish") {
+			//play the sound
+			GetComponent<AudioSource>().Play();
+		}
 	}
 }
