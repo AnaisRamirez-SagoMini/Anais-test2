@@ -10,10 +10,20 @@ public class JinjaController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
+
+		//variable to store jinja's transform component
+		Transform tf = GetComponent<Transform>();
+
 		// check if the right arrow key is down
 		if (Input.GetKey(KeyCode.RightArrow)) {
 			//move jinja to the right
-			GetComponent<Transform>().position += Vector3.right;
+			tf.position += Vector3.right * 0.1f;
+		}
+
+		// check if the left arrow key is down
+		if (Input.GetKey(KeyCode.LeftArrow)) {
+			//move jinja to the left
+			tf.position += Vector3.left * 0.1f;
 		}
 	}
 }
