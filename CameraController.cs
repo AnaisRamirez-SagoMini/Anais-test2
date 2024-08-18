@@ -14,7 +14,21 @@ public class CameraController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
-		// move the camera to jinja's position
-		GetComponent<Transform>().position = jinjaTransform.position;
+
+		// get the current position
+		Vector3 current = GetComponent<Transform>().position;
+
+		// get the target position (jinja)
+		Vector3 target = jinjaTransform.position + Vector3.up;
+
+		//make sure the camera's z coordinate doesn't change
+		target.z = current.z;
+
+		//get the new position
+		Vector3 position = Vector3.Lerp(current, target, 0.1f);
+
+		//move the camera to the new position
+		GetComponent<Transform>().position = position;
+
 	}
 }
