@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class JinjaController : MonoBehaviour {
+
+	// a field to store Jinja's velocity
+	Vector3 velocity = Vector3.zero;
+
 	// Start is called before the first frame update
 	void Start() {
 
@@ -16,14 +20,17 @@ public class JinjaController : MonoBehaviour {
 
 		// check if the right arrow key is down
 		if (Input.GetKey(KeyCode.RightArrow)) {
-			//move jinja to the right
-			tf.position += Vector3.right * 0.1f;
+			//add to the velocity
+			velocity += Vector3.right * 0.1f;
 		}
 
 		// check if the left arrow key is down
 		if (Input.GetKey(KeyCode.LeftArrow)) {
-			//move jinja to the left
-			tf.position += Vector3.left * 0.1f;
+			//reduce velocity
+			velocity += Vector3.left * 0.1f;
 		}
+
+		//move jinja by her current velocity
+		tf.position += velocity;
 	}
 }
